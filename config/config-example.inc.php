@@ -36,6 +36,11 @@ $psconfig = [
 		'/^http:\/\/logs\.psim\.us:8080$/' => 'logs.psim.us_',
 		'/^http:\/\/[a-z0-9]+\.psim\.us$/' => '',
 		'/^http:\/\/play\.pokemonshowdown\.com$/' => '',
+
+		// your deployments
+    '/^https:\/\/aslshowdownui-production\.up\.railway\.app$/' => '',
+    '/^https:\/\/asl-pokemon-showdown-dex-production\.up\.railway\.app$/' => '',
+    '/^https:\/\/asl-pokemon-showdown-client-production\.up\.railway\.app$/' => '',
 	],
 
 // key signing for SSO
