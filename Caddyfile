@@ -1,163 +1,137 @@
 {
-	auto_https off
-	admin off
+	auto_https off # Railway handles HTTPS
+	admin off # Disable admin API
 }
 
-# ASL Play site on Railway
 http://:{$PORT} {
 	root * /app/play.pokemonshowdown.com
 	encode zstd gzip
 
+	# Log to Railway
 	log {
 		output stdout
 		format console
 	}
 
-	####################################################################
-	# Content types / headers
-	####################################################################
+	# MIME types
+	header *.phps Content-Type "text/plain"
+	header *.tgz Content-Type "application/x-tgz"
+	header *.crx Content-Type "application/x-chrome-extension"
+	header *.webapp Content-Type "application/x-web-app-manifest+json"
+	header *.json5 Content-Type "text/plain; charset=UTF-8"
+
+	# Security - block sensitive files/directories
+	@blocked path /backup/* /.git/* /lib/* /index.template.html /preactalpha.template.html /testclient* /apple-touch-icon-precomposed.png
+	respond @blocked 403
+
+	# CORS headers for safe resources
+	@safe_resources path /style/fonts?/*.{eot,svg,ttf,woff,woff2} /data/*.js /data/*.json
+	header @safe_resources Access-Control-Allow-Origin "*"
+	header @safe_resources Access-Control-Allow-Methods "GET,POST,OPTIONS"
+	header @safe_resources Access-Control-Allow-Headers "Content-Type, X-Requested-With"
+
+	# colors.json CORS
 	@colors path /colors.json
 	header @colors Access-Control-Allow-Origin "*"
 	header @colors Access-Control-Allow-Methods "GET,POST,OPTIONS"
-	header @colors Access-Control-Allow-Headers "Content-Type, X-Requested-With"
 
-	@nocache path /index.html /preactalpha.html
-	header @nocache Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-	header @nocache Pragma "no-cache"
-	header @nocache Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+	# Cache control for index files
+	@index_files path /index.html /preactalpha.html
+	header @index_files Cache-Control "no-cache, no-store, must-revalidate"
+	header @index_files Pragma "no-cache"
+	header @index_files Expires "0"
 
-	@saferes path_regexp saferes "^/(style/fonts?/.*\\.(eot|svg|ttf|woff2?))$|^/data/.*\\.(js|json)$"
-	header @saferes Access-Control-Allow-Origin "*"
-	header @saferes Access-Control-Allow-Methods "GET,POST,OPTIONS"
-	header @saferes Access-Control-Allow-Headers "Content-Type, X-Requested-With"
+	# Redirects (from .htaccess)
+	redir /appeals? /view-help-request--appeal 302
+	redir /report? /view-help-request--report 302
+	redir /requesthelp? /view-help-request--other 302
+	redir /rooms?suggestions? https://www.smogon.com/forums/threads/room-suggestions-are-no-longer-being-taken.3522130/ 302
+	redir /suggestions? https://www.smogon.com/forums/forums/517/ 302
+	redir /adminrequests? https://www.smogon.com/forums/threads/names-passwords-rooms-and-servers-contacting-upper-staff.3538721/ 302
+	redir /forgotpassword? https://www.smogon.com/forums/threads/names-passwords-rooms-and-servers-contacting-upper-staff.3538721/post-6227626/ 302
+	redir /bugs?(reports?)? https://www.smogon.com/forums/forums/876/ 302
+	redir /formatsuggestions? https://pokemonshowdown.com/pages/formatsuggestions 302
+	redir /rules? https://pokemonshowdown.com/rules 302
+	redir /faq? https://www.smogon.com/forums/posts/6774128/ 302
+	redir /credits? https://pokemonshowdown.com/credits 302
+	redir /news? https://pokemonshowdown.com/news 302
+	redir /privacy? https://pokemonshowdown.com/privacy 302
+	redir /contact? https://pokemonshowdown.com/contact 302
+	redir /dex? https://dex.pokemonshowdown.com/ 302
+	redir /(damage)?calc? https://calc.pokemonshowdown.com/ 302
+	redir /insecure? /?insecure 302
+	redir /devdiscord? https://discord.com/invite/D8QwhsH 302
+	redir /smogcord? https://discord.gg/smogon 302
+	redir /smogdex? https://smogon.com/dex/ 302
+	redir /forums? https://smogon.com/forums/ 302
+	redir /replays? https://replay.pokemonshowdown.com/ 302
+	redir /trustworthy-dlc-link? https://www.youtube.com/watch?v=dQw4w9WgXcQ 302
 
-	@json5 path *.json5
-	header @json5 Content-Type "text/plain; charset=UTF-8"
+	# Shortlinks
+	redir /t? https://teams.pokemonshowdown.com/ 302
+	redir /t/{team} https://teams.pokemonshowdown.com/view/{team} 302
+	redir /r? https://replay.pokemonshowdown.com/ 302
+	redir /r/{replay} https://replay.pokemonshowdown.com/{replay} 302
 
-	####################################################################
-	# External links (leave as redirects)
-	####################################################################
-	@appeal path_regexp appeal "^/appeals?/?$"
-	redir @appeal https://play.pokemonshowdown.com/view-help-request--appeal 302
+	# Battle redirects
+	redir /battle-{battle} https://replay.pokemonshowdown.com/{battle} 302
+	redir /replay/battle-{battle} https://replay.pokemonshowdown.com/{battle} 302
+	redir /replay/turn_{data}.png /replay/turn-image.php?data={data} 302
 
-	@report path_regexp report "^/report/?$"
-	redir @report https://play.pokemonshowdown.com/view-help-request--report 302
+	# Lobby redirect
+	redir /lobby? / 302
 
-	@request path_regexp request "^/requesthelp/?$"
-	redir @request https://play.pokemonshowdown.com/view-help-request--other 302
+	# Server redirects
+	redir /~~{serverid}:{port}/action.php /action.php?serverid={serverid} 302
+	redir /~~{host}/{roomid} /redirect-server.php?host={host}&roomid={roomid} 302
 
-	@rules path_regexp rules "^/rules?/?$"
-	redir @rules https://pokemonshowdown.com/rules 302
+	# Sprite rewrites (backward compatibility)
+	redir /sprites/xyani{path} /sprites/ani{path} 302
+	redir /sprites/xydex{path} /sprites/dex{path} 302
+	redir /sprites/smicons{path} /sprites/pokemonicons{path} 302
+	redir /sprites/trainers/latest? /sprites/trainers/?filter=recent 302
+	redir /sprites/trainers/credits? /sprites/trainers/?filter=credited 302
+	redir /sprites/rby{path} /sprites/gen1{path} 302
+	redir /sprites/gsc{path} /sprites/gen2{path} 302
+	redir /sprites/rse{path} /sprites/gen3{path} 302
+	redir /sprites/dpp{path} /sprites/gen4{path} 302
+	redir /sprites/bw{path} /sprites/gen5{path} 302
+	redir /sprites/xy{path} /sprites/gen6{path} 302
+	redir /sprites/sm{path} /sprites/gen7{path} 302
+	redir /sprites/gen1rg-back{path} /sprites/gen1-back{path} 302
+	redir /sprites/gen1rb-back{path} /sprites/gen1-back{path} 302
+	redir /sprites/gen2g-back{path} /sprites/gen2-back{path} 302
+	redir /sprites/gen2s-back{path} /sprites/gen2-back{path} 302
+	redir /sprites/gen3rs-back{path} /sprites/gen3-back{path} 302
+	redir /sprites/gen3frlg-back{path} /sprites/gen3-back{path} 302
+	redir /sprites/gen4dp-back{path} /sprites/gen4-back{path} 302
+	redir /sprites/gen4dp-2-back{path} /sprites/gen4-back{path} 302
 
-	@faq path_regexp faq "^/faq/?$"
-	redir @faq https://www.smogon.com/forums/posts/6774128/ 302
+	# SPA routing - serve index.html for room IDs and special paths
+	@room_id path_regexp ^([A-Za-z0-9][A-Za-z0-9-]*)$
+	@special_paths path /preactalpha /preactbeta /beta /dev /development /login /users /dm-* /challenge-* /user-* /viewuser-* /ladder-*
 
-	@credits path_regexp credits "^/credits?/?$"
-	redir @credits https://pokemonshowdown.com/credits 302
-
-	@privacy path_regexp privacy "^/privacy/?$"
-	redir @privacy https://pokemonshowdown.com/privacy 302
-
-	@contact path_regexp contact "^/contact/?$"
-	redir @contact https://pokemonshowdown.com/contact 302
-
-	####################################################################
-	# Mount YOUR services via internal Railway DNS (proxy, not redirect)
-	####################################################################
-
-	# ---- Dex under /dex ----
-	# handle_path strips the "/dex" prefix so the upstream sees "/"
-	handle_path /dex* {
-		reverse_proxy asl-pokemon-showdown-dex.railway.internal
+	# Serve preactalpha.html for special paths or if preactalpha cookie is set
+	@preactalpha_cookie header Cookie *preactalpha=1*
+	handle @special_paths {
+		try_files /preactalpha.html
+		file_server
 	}
-	# convenience: /calc -> /dex/calc
-	@calc path_regexp calc "^/(damage)?calc/?$"
-	redir @calc /dex/calc 302
 
-	# ---- Replays under /replays and shortlink /r ----
-	handle_path /replays* {
-		reverse_proxy asl-pokemon-showdown-client.railway.internal
+	# Serve index.html for room IDs
+	handle @room_id {
+		try_files /index.html
+		file_server
 	}
-	handle_path /r* {
-		reverse_proxy asl-pokemon-showdown-client.railway.internal
+
+	# 404 error handling (from .htaccess ErrorDocument)
+	@not_found expression {http.error.status_code} == 404
+	handle @not_found {
+		try_files /dirindex/404.html
+		file_server
 	}
-	# old battle URLs → local /r/<slug> (which proxies above)
-	@bdate path_regexp bdate "^/battle-([a-z0-9]+-[0-9]{8})$"
-	redir @bdate /r/{re.bdate.1} 302
-	@broom path_regexp broom "^/battle-([a-z0-9]+)$"
-	redir @broom /r/{re.broom.1} 302
 
-	# ---- Your Showdown server (WebSocket + HTTP) under /showdown ----
-	@showdown path /showdown* /showdown/*
-	reverse_proxy @showdown web.railway.internal:8000
-
-	####################################################################
-	# Sprite rewrites (unchanged)
-	####################################################################
-	@xyani path_regexp xyani "^/sprites/xyani(.*)$"
-	rewrite @xyani /sprites/ani{re.xyani.1}
-	@xydex path_regexp xydex "^/sprites/xydex(.*)$"
-	rewrite @xydex /sprites/dex{re.xydex.1}
-	@smicons path_regexp smicons "^/sprites/smicons(.*)$"
-	rewrite @smicons /sprites/pokemonicons{re.smicons.1}
-	@trainersLatest path_regexp trainersLatest "^/sprites/trainers/latest/?$"
-	redir @trainersLatest /sprites/trainers/?filter=recent 302
-	@trainersCred path_regexp trainersCred "^/sprites/trainers/credits/?$"
-	redir @trainersCred /sprites/trainers/?filter=credited 302
-	@rby path_regexp rby "^/sprites/rby(.*)$"
-	rewrite @rby /sprites/gen1{re.rby.1}
-	@gsc path_regexp gsc "^/sprites/gsc(.*)$"
-	rewrite @gsc /sprites/gen2{re.gsc.1}
-	@rse path_regexp rse "^/sprites/rse(.*)$"
-	rewrite @rse /sprites/gen3{re.rse.1}
-	@dpp path_regexp dpp "^/sprites/dpp(.*)$"
-	rewrite @dpp /sprites/gen4{re.dpp.1}
-	@bw path_regexp bw "^/sprites/bw(.*)$"
-	rewrite @bw /sprites/gen5{re.bw.1}
-	@xy path_regexp xy "^/sprites/xy(.*)$"
-	rewrite @xy /sprites/gen6{re.xy.1}
-	@sm path_regexp sm "^/sprites/sm(.*)$"
-	rewrite @sm /sprites/gen7{re.sm.1}
-	@g1rg path_regexp g1rg "^/sprites/gen1rg-back(.*)$"
-	rewrite @g1rg /sprites/gen1-back{re.g1rg.1}
-	@g1rb path_regexp g1rb "^/sprites/gen1rb-back(.*)$"
-	rewrite @g1rb /sprites/gen1-back{re.g1rb.1}
-	@g2g path_regexp g2g "^/sprites/gen2g-back(.*)$"
-	rewrite @g2g /sprites/gen2-back{re.g2g.1}
-	@g2s path_regexp g2s "^/sprites/gen2s-back(.*)$"
-	rewrite @g2s /sprites/gen2-back{re.g2s.1}
-	@g3rs path_regexp g3rs "^/sprites/gen3rs-back(.*)$"
-	rewrite @g3rs /sprites/gen3-back{re.g3rs.1}
-	@g3frlg path_regexp g3frlg "^/sprites/gen3frlg-back(.*)$"
-	rewrite @g3frlg /sprites/gen3-back{re.g3frlg.1}
-	@g4dp path_regexp g4dp "^/sprites/gen4dp-back(.*)$"
-	rewrite @g4dp /sprites/gen4-back{re.g4dp.1}
-	@g4dp2 path_regexp g4dp2 "^/sprites/gen4dp-2-back(.*)$"
-	rewrite @g4dp2 /sprites/gen4-back{re.g4dp2.1}
-	@frlg path_regexp frlg "^/sprites/gen3frlg(.*)$"
-	rewrite @frlg /sprites/gen3{re.frlg.1}
-
-	####################################################################
-	# Index routing (unchanged)
-	####################################################################
-	@preact path /preactalpha /preactalpha.html /beta /dev /development /login
-	rewrite @preact /preactalpha.html
-	@preactPat path_regexp preactPat "^/(preactbeta|beta|dev|development|login|users|dm-[a-z0-9-]+|challenge-[a-z0-9-]+|user-[a-z0-9-]+|viewuser-[a-z0-9-]+|ladder-[a-z0-9-]+)$"
-	rewrite @preactPat /preactalpha.html
-	@roomid path_regexp roomid "^/([A-Za-z0-9][A-Za-z0-9-]*)$"
-	rewrite @roomid /
-
-	####################################################################
-	# Security / 404s
-	####################################################################
-	@forbid path /backup/* /.git/* /lib/* /index.template.html /preactalpha.template.html /testclient.html /testclient-beta.html
-	respond @forbid 403
-	@apple path /apple-touch-icon-precomposed.png
-	respond @apple 404
-
-	####################################################################
-	# Default handlers
-	####################################################################
-	try_files {path} {path}/ /index.html
+	# Directory index fallback (from .htaccess DirectoryIndex)
+	try_files {path} {path}/ /index.php /index.html /dirindex/dirindex.php
 	file_server
 }
