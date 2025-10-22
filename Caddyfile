@@ -213,7 +213,7 @@ http://:{$PORT} {
   # Index-page routing & cache headers
   ####################################################################
   # Routes that should load preactalpha.html explicitly
-  @preact paths /preactalpha /preactalpha.html /beta /dev /development /login
+  @preact path /preactalpha /preactalpha.html /beta /dev /development /login
   rewrite @preact /preactalpha.html
 
   # Routes like users-* ladder-* dm-* etc → preactalpha.html
