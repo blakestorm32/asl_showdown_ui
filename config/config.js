@@ -1,34 +1,35 @@
-// play.pokemonshowdown.com/config/config-test.js
 /** @type {import('../play.pokemonshowdown.com/src/client-main').PSConfig} */
+var Config = Config || {};
+
+/* version */ Config.version = "0";
+
+Config.bannedHosts = ['cool.jit.su', 'pokeball-nixonserver.rhcloud.com'];
+
+Config.whitelist = [
+	'wikipedia.org'
+
+	// The full list is maintained outside of this repository so changes to it
+	// don't clutter the commit log. Feel free to copy our list for your own
+	// purposes; it's here: https://play.pokemonshowdown.com/config/config.js
+
+	// If you would like to change our list, simply message Zarel on Smogon or
+	// Discord.
+];
+
+// `defaultserver` specifies the server to use when the domain name in the
+// address bar is `Config.routes.client`.
 Config.defaultserver = {
-  id: 'asl',
-  host: 'aslpokemonbattling-up-railway-app', // your battle server host
-  port: 443,        // HTTPS/WSS
-  httpport: 8000,   // HTTP fallback
-  altport: 80,
-  registered: true
+	id: 'showdown',
+	host: 'web.railway.internal.psim.us',
+	port: 443,
+	httpport: 8000,
+	altport: 80,
+	registered: true
 };
 
-/*************************************************************
- * Route configuration (used for links inside the UI)
- *************************************************************/
-Config.routes = {
-  root: 'pokemonshowdown.com', // keep main site routes standard
-  client: 'asl-pokemon-showdown-client-production.up.railway.app/play',
-  replays: 'asl-pokemon-showdown-client-production.up.railway.app/replay',
-  dex: 'asl-pokemon-showdown-dex-production.up.railway.app',
-  users: 'pokemonshowdown.com/users',
-  teams: 'teams.pokemonshowdown.com',
+Config.roomsFirstOpenScript = function () {
 };
-/*** Begin automatically generated configuration ***/
-Config.version = "0.11.2";
 
-Config.routes = {
-	root: 'pokemonshowdown.com',
-	client: 'play.pokemonshowdown.com',
-	dex: 'dex.pokemonshowdown.com',
-	replays: 'replay.pokemonshowdown.com',
-	users: 'pokemonshowdown.com/users',
-	teams: 'teams.pokemonshowdown.com',
+Config.customcolors = {
+	'zarel': 'aeo'
 };
-/*** End automatically generated configuration ***/
