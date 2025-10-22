@@ -4,8 +4,8 @@ $PokemonServers = array (
   'showdown' => 
   array (
     'name' => 'Smogon University',
-    'id' => 'showdown',
-    'server' => 'sim.psim.us',
+    'id' => 'asl',
+    'server' => 'aslpokemonbattling-up-railway-app',
     'port' => 8000,
   ),
 );
