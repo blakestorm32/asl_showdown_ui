@@ -159,6 +159,6 @@ http://:{$PORT} {
 
   # Serve static files (CSS, JS, etc.)
   file_server
-  }
+  
 
 }
