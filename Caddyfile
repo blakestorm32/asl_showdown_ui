@@ -9,9 +9,10 @@ http://:{$PORT} {
 
 	# Log to Railway
 	log {
-		output stdout
-		format console
-	}
+    output stdout
+    format console
+    level DEBUG
+  }
 
 	# MIME types
 	header *.phps Content-Type "text/plain"
