@@ -20,7 +20,7 @@ Config.whitelist = [
 // address bar is `Config.routes.client`.
 Config.defaultserver = {
 	id: 'showdown',
-	host: 'web.railway.internal.psim.us',
+	host: 'aslpokemonbattling-up-railway-app.psim.us',
 	port: 443,
 	httpport: 8000,
 	altport: 80,
@@ -33,3 +33,15 @@ Config.roomsFirstOpenScript = function () {
 Config.customcolors = {
 	'zarel': 'aeo'
 };
+/*** Begin automatically generated configuration ***/
+Config.version = "0.11.2";
+
+Config.routes = {
+	root: 'pokemonshowdown.com',
+	client: 'aslshowdownui-production.up.railway.app',
+	dex: 'asl-pokemon-showdown-dex-production.up.railway.app',
+	replays: 'asl-pokemon-showdown-client-production.up.railway.app',
+	users: 'pokemonshowdown.com/users',
+	teams: 'teams.pokemonshowdown.com',
+};
+/*** End automatically generated configuration ***/

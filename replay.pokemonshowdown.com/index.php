@@ -108,10 +108,10 @@ https://replay.pokemonshowdown.com/gen7randomdoublesbattle-865046831.log
 
 -->
 
-<link rel="stylesheet" href="//pokemonshowdown.com/style/global.css?0.5347276227758928" />
-<link rel="stylesheet" href="//play.pokemonshowdown.com/style/font-awesome.css?0.2950616498586367" />
-<link rel="stylesheet" href="//play.pokemonshowdown.com/style/battle.css?0.8084906402866521" />
-<link rel="stylesheet" href="//play.pokemonshowdown.com/style/utilichart.css?0.3783894654742732" />
+<link rel="stylesheet" href="//pokemonshowdown.com/style/global.css?0.11490499179563263" />
+<link rel="stylesheet" href="//aslshowdownui-production.up.railway.app/style/font-awesome.css?0.21708937743462164" />
+<link rel="stylesheet" href="//aslshowdownui-production.up.railway.app/style/battle.css?0.66442328734947" />
+<link rel="stylesheet" href="//aslshowdownui-production.up.railway.app/style/utilichart.css?0.9791816953500518" />
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-26211653-1"></script>
@@ -234,7 +234,7 @@ https://replay.pokemonshowdown.com/gen7randomdoublesbattle-865046831.log
 			<li><a class="button cur" href="/">Replay</a></li>
 			<li><a class="button purplebutton" href="//smogon.com/dex/" target="_blank">Strategy</a></li>
 			<li><a class="button nav-last purplebutton" href="//smogon.com/forums/" target="_blank">Forum</a></li>
-			<li><a class="button greenbutton nav-first nav-last" href="//play.pokemonshowdown.com/">Play</a></li>
+			<li><a class="button greenbutton nav-first nav-last" href="//aslshowdownui-production.up.railway.app/">Play</a></li>
 		</ul></div>
 	</header>
 
@@ -246,28 +246,28 @@ https://replay.pokemonshowdown.com/gen7randomdoublesbattle-865046831.log
 
 </div>
 
-<script defer nomodule src="//play.pokemonshowdown.com/js/lib/ps-polyfill.js"></script>
-<script defer src="//play.pokemonshowdown.com/js/lib/preact.min.js"></script>
+<script defer nomodule src="//aslshowdownui-production.up.railway.app/js/lib/ps-polyfill.js"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/js/lib/preact.min.js"></script>
 
-<script defer src="//play.pokemonshowdown.com/config/config.js?b72244b0"></script>
-<script defer src="//play.pokemonshowdown.com/js/lib/jquery-1.11.0.min.js"></script>
-<script defer src="//play.pokemonshowdown.com/js/lib/html-sanitizer-minified.js"></script>
-<script defer src="//play.pokemonshowdown.com/js/battle-sound.js"></script>
-<script defer src="//play.pokemonshowdown.com/js/battledata.js?0.8825741088807904"></script>
-<script defer src="//play.pokemonshowdown.com/data/pokedex-mini.js?0.1566720540830997"></script>
-<script defer src="//play.pokemonshowdown.com/data/pokedex-mini-bw.js?0.42479391644320064"></script>
-<script defer src="//play.pokemonshowdown.com/data/graphics.js?0.6660883343429462"></script>
-<script defer src="//play.pokemonshowdown.com/data/pokedex.js?0.5745238462260789"></script>
-<script defer src="//play.pokemonshowdown.com/data/moves.js?0.6837720380218477"></script>
-<script defer src="//play.pokemonshowdown.com/data/abilities.js?0.8154951244869613"></script>
-<script defer src="//play.pokemonshowdown.com/data/items.js?0.9874964370451957"></script>
-<script defer src="//play.pokemonshowdown.com/data/teambuilder-tables.js?0.9978587420107861"></script>
-<script defer src="//play.pokemonshowdown.com/js/battle-tooltips.js?0.7423393417680602"></script>
-<script defer src="//play.pokemonshowdown.com/js/battle.js?0.03562119993876567"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/config/config.js?c4dd129d"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/js/lib/jquery-1.11.0.min.js"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/js/lib/html-sanitizer-minified.js"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/js/battle-sound.js"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/js/battledata.js?0.15334088570993876"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/data/pokedex-mini.js?0.9295337814835638"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/data/pokedex-mini-bw.js?0.8577972730496086"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/data/graphics.js?0.024988077597202007"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/data/pokedex.js?0.3668870330168781"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/data/moves.js?0.4721192286036948"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/data/abilities.js?0.6086910659864679"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/data/items.js?0.09373270950402057"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/data/teambuilder-tables.js?0.08716185134389098"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/js/battle-tooltips.js?0.2911930434152097"></script>
+<script defer src="//aslshowdownui-production.up.railway.app/js/battle.js?0.5905606504334762"></script>
 
-<script defer src="/js/utils.js?0.23537153533583988"></script>
-<script defer src="/js/replays-battle.js?0.3696109558259191"></script>
-<script defer src="/js/replays-index.js?0.47678710185769924"></script>
+<script defer src="/js/utils.js?0.1572589827249693"></script>
+<script defer src="/js/replays-battle.js?0.5287996792245742"></script>
+<script defer src="/js/replays-index.js?0.3479419900388325"></script>
 
 <?php
 
@@ -294,4 +294,4 @@ if ($replay) {
 
 ?>
 
-<script defer src="/js/replays.js?0.31567245180406434"></script>
+<script defer src="/js/replays.js?0.7453581544149757"></script>

@@ -26,12 +26,12 @@ function ThemeHeaderTemplate() {
 <?php } ?>
 
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=IE8" />
-	<link rel="stylesheet" href="//play.pokemonshowdown.com/style/font-awesome.css?0.051189250527834185" />
-	<link rel="stylesheet" href="//pokemonshowdown.com/theme/panels.css?0.5047222457882283" />
-	<link rel="stylesheet" href="//pokemonshowdown.com/theme/main.css?0.7570188408217118" />
-	<link rel="stylesheet" href="//play.pokemonshowdown.com/style/battle.css?0.14464895705362024" />
-	<link rel="stylesheet" href="//play.pokemonshowdown.com/style/replay.css?0.6757305004586318" />
-	<link rel="stylesheet" href="//play.pokemonshowdown.com/style/utilichart.css?0.9355838775976668" />
+	<link rel="stylesheet" href="//aslshowdownui-production.up.railway.app/style/font-awesome.css?0.9935180481316539" />
+	<link rel="stylesheet" href="//pokemonshowdown.com/theme/panels.css?0.5563704142171173" />
+	<link rel="stylesheet" href="//pokemonshowdown.com/theme/main.css?0.11098401821836457" />
+	<link rel="stylesheet" href="//aslshowdownui-production.up.railway.app/style/battle.css?0.16211887985979123" />
+	<link rel="stylesheet" href="//aslshowdownui-production.up.railway.app/style/replay.css?0.0960338327501733" />
+	<link rel="stylesheet" href="//aslshowdownui-production.up.railway.app/style/utilichart.css?0.5712968871624247" />
 
 	<!-- Workarounds for IE bugs to display trees correctly. -->
 	<!--[if lte IE 6]><style> li.tree { height: 1px; } </style><![endif]-->
@@ -55,7 +55,7 @@ function ThemeHeaderTemplate() {
 	<div class="pfx-topbar">
 		<div class="header">
 			<ul class="nav">
-				<li><a class="button nav-first<?php if ($panels->tab === 'home') echo ' cur'; ?>" href="//pokemonshowdown.com/"><img src="//pokemonshowdown.com/images/pokemonshowdownbeta.png?0.08076075828715146" alt="Pok&eacute;mon Showdown! (beta)" /> Home</a></li>
+				<li><a class="button nav-first<?php if ($panels->tab === 'home') echo ' cur'; ?>" href="//pokemonshowdown.com/"><img src="//pokemonshowdown.com/images/pokemonshowdownbeta.png?0.18471320234714805" alt="Pok&eacute;mon Showdown! (beta)" /> Home</a></li>
 				<li><a class="button<?php if ($panels->tab === 'pokedex') echo ' cur'; ?>" href="//dex.pokemonshowdown.com/">Pok&eacute;dex</a></li>
 				<li><a class="button<?php if ($panels->tab === 'replay') echo ' cur'; ?>" href="/">Replay</a></li>
 				<li><a class="button purplebutton" href="//smogon.com/dex/" target="_blank">Strategy</a></li>
@@ -76,10 +76,10 @@ function ThemeHeaderTemplate() {
 
 function ThemeScriptsTemplate() {
 ?>
-	<script src="//play.pokemonshowdown.com/js/lib/jquery-1.11.0.min.js?0.4650140461263057"></script>
-	<script src="//play.pokemonshowdown.com/js/lib/lodash.core.js?0.24352686011186186"></script>
-	<script src="//play.pokemonshowdown.com/js/lib/backbone.js?0.9883931522992839"></script>
-	<script src="//dex.pokemonshowdown.com/js/panels.js?0.43146451429589017"></script>
+	<script src="//aslshowdownui-production.up.railway.app/js/lib/jquery-1.11.0.min.js?0.5295193467883688"></script>
+	<script src="//aslshowdownui-production.up.railway.app/js/lib/lodash.core.js?0.14675444985583663"></script>
+	<script src="//aslshowdownui-production.up.railway.app/js/lib/backbone.js?0.750772521914475"></script>
+	<script src="//asl-pokemon-showdown-dex-production.up.railway.app/js/panels.js?0.9802705195331995"></script>
 <?php
 }
 
@@ -88,22 +88,22 @@ function ThemeFooterTemplate() {
 ?>
 <?php $panels->scripts(); ?>
 
-	<script src="//play.pokemonshowdown.com/js/lib/jquery-cookie.js?0.6802612828741126"></script>
-	<script src="//play.pokemonshowdown.com/js/lib/html-sanitizer-minified.js?0.9736862448372627"></script>
-	<script src="//play.pokemonshowdown.com/js/battle-sound.js?0.46639801562547056"></script>
-	<script src="//play.pokemonshowdown.com/config/config.js?b72244b0"></script>
-	<script src="//play.pokemonshowdown.com/js/battledata.js?0.2066984488985364"></script>
-	<script src="//play.pokemonshowdown.com/data/pokedex-mini.js?0.26153224265295627"></script>
-	<script src="//play.pokemonshowdown.com/data/pokedex-mini-bw.js?0.9933788219202482"></script>
-	<script src="//play.pokemonshowdown.com/data/graphics.js?0.3061000047620899"></script>
-	<script src="//play.pokemonshowdown.com/data/pokedex.js?0.1407923195950911"></script>
-	<script src="//play.pokemonshowdown.com/data/items.js?0.7942925249236812"></script>
-	<script src="//play.pokemonshowdown.com/data/moves.js?0.4283310784873815"></script>
-	<script src="//play.pokemonshowdown.com/data/abilities.js?0.12766140996224462"></script>
-	<script src="//play.pokemonshowdown.com/data/teambuilder-tables.js?0.42176069642633807"></script>
-	<script src="//play.pokemonshowdown.com/js/battle-tooltips.js?0.49627437645741135"></script>
-	<script src="//play.pokemonshowdown.com/js/battle.js?0.11428797696615556"></script>
-	<script src="/js/replay.js?0.23289172064113406"></script>
+	<script src="//aslshowdownui-production.up.railway.app/js/lib/jquery-cookie.js?0.5549051411507888"></script>
+	<script src="//aslshowdownui-production.up.railway.app/js/lib/html-sanitizer-minified.js?0.3797482353590249"></script>
+	<script src="//aslshowdownui-production.up.railway.app/js/battle-sound.js?0.25713964501299524"></script>
+	<script src="//aslshowdownui-production.up.railway.app/config/config.js?0.03693439511756402"></script>
+	<script src="//aslshowdownui-production.up.railway.app/js/battledata.js?0.9281445319023338"></script>
+	<script src="//aslshowdownui-production.up.railway.app/data/pokedex-mini.js?0.3351274361574652"></script>
+	<script src="//aslshowdownui-production.up.railway.app/data/pokedex-mini-bw.js?0.5957958851181524"></script>
+	<script src="//aslshowdownui-production.up.railway.app/data/graphics.js?0.09538290889685208"></script>
+	<script src="//aslshowdownui-production.up.railway.app/data/pokedex.js?0.20005854398618061"></script>
+	<script src="//aslshowdownui-production.up.railway.app/data/items.js?0.5901586694103291"></script>
+	<script src="//aslshowdownui-production.up.railway.app/data/moves.js?0.5629389529335374"></script>
+	<script src="//aslshowdownui-production.up.railway.app/data/abilities.js?0.15934088070017727"></script>
+	<script src="//aslshowdownui-production.up.railway.app/data/teambuilder-tables.js?0.10140271537886081"></script>
+	<script src="//aslshowdownui-production.up.railway.app/js/battle-tooltips.js?0.9918082714287528"></script>
+	<script src="//aslshowdownui-production.up.railway.app/js/battle.js?0.9497858394024288"></script>
+	<script src="/js/replay.js?0.9550595259003039"></script>
 
 </body></html>
 <?php
