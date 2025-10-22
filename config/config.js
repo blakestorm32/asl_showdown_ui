@@ -38,7 +38,7 @@ Config.version = "0.11.2";
 
 Config.routes = {
 	root: 'pokemonshowdown.com',
-	client: 'aslshowdownui-production.up.railway.app',
+	client: 'play.pokemonshowdown.com',
 	dex: 'asl-pokemon-showdown-dex-production.up.railway.app',
 	replays: 'asl-pokemon-showdown-client-production.up.railway.app',
 	users: 'pokemonshowdown.com/users',
