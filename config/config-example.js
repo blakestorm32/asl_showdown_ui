@@ -13,10 +13,10 @@ Config.defaultserver = {
  * Route configuration (used for links inside the UI)
  *************************************************************/
 Config.routes = {
-  root: 'pokemonshowdown.com', // keep main site routes standard
-  client: 'asl-pokemon-showdown-client-production.up.railway.app/play',
-  replays: 'asl-pokemon-showdown-client-production.up.railway.app/replay',
-  dex: 'asl-pokemon-showdown-dex-production.up.railway.app',
-  users: 'pokemonshowdown.com/users',
-  teams: 'teams.pokemonshowdown.com',
+  root: "pokemonshowdown.com",
+  client: "aslshowdownui-production.up.railway.app",
+  dex: "asl-pokemon-showdown-dex-production.up.railway.app",
+  replays: "asl-pokemon-showdown-client-production.up.railway.app",
+  users: "pokemonshowdown.com/users",
+  teams: "teams.pokemonshowdown.com"
 };
