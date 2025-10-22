@@ -133,5 +133,10 @@ http://:{$PORT} {
 
 	# Directory index fallback (from .htaccess DirectoryIndex)
 	try_files {path} {path}/ /index.php /index.html /dirindex/dirindex.php
-	file_server
+
+  # Serve PHP files via FrankenPHP
+  php_server
+
+  # Serve static files (CSS, JS, etc.)
+  file_server
 }
