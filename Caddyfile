@@ -9,10 +9,9 @@ http://:{$PORT} {
 
 	# Log to Railway
 	log {
-    output stdout
-    format console
-    level DEBUG
-  }
+		output stdout
+		format console
+	}
 
 	# MIME types
 	header *.phps Content-Type "text/plain"
@@ -133,7 +132,26 @@ http://:{$PORT} {
 	}
 
 	# Directory index fallback (from .htaccess DirectoryIndex)
-	try_files {path} {path}/ /index.php /index.html /dirindex/dirindex.php
+	@static {
+	file
+	path *.js *.css *.json *.png *.jpg *.jpeg *.gif *.svg *.ico *.webp *.avif *.woff *.woff2 *.ttf *.eot
+	}
+	handle @static {
+		file_server
+	}
+
+	# PHP handling (if you actually have .php files)
+	@php {
+		path *.php
+	}
+	handle @php {
+		php_fastcgi 127.0.0.1:9000
+	}
+
+	# Directory index fallback (for client-side routes)
+	handle {
+		try_files {path} {path}/ /index.html
+	}
 
   # Serve PHP files via FrankenPHP
   php_server
