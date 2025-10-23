@@ -2,7 +2,7 @@
 var Config = (typeof Config !== 'undefined' && Config) || {};
 
 /* Optional: serve assets (images/audio/etc.) from your UI host */
-Config.resourceprefix = 'https://aslshowdownui-production.up.railway.app';
+Config.resourceprefix = 'aslshowdownui-production.up.railway.app';
 
 Config.bannedHosts = ['cool.jit.su', 'pokeball-nixonserver.rhcloud.com', /\.glitch\.me/];
 // Config.afd = true;
@@ -343,16 +343,6 @@ Config.customcolors = {
 	'cathy': '' // {color: '#ff5cb6'}
 };
 
-// Default server to connect to when opening the client host
-Config.defaultserver = {
-	id: 'showdown',
-	host: 'sim3.psim.us', // change if you have your own sim
-	port: 443,
-	httpport: 8000,
-	altport: 80,
-	registered: true
-};
-
 Config.groups = {
 	'#': { name: "Room Owner (#)", type: 'leadership', order: 10001 },
 	'~': { name: "Administrator (~)", type: 'leadership', order: 10002 },
@@ -372,7 +362,7 @@ Config.groups = {
 
 Config.defaultserver = {
   id: 'asl',                                  // any id you like
-  host: 'https://aslpokemonbattling-up-railway-app.psim.us/',         // <-- change this
+  host: 'aslpokemonbattling-up-railway-app.psim.us',         // <-- change this
   port: 443,                                  // HTTPS/WSS
   altport: 80,
   registered: true
