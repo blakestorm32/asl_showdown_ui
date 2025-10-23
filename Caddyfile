@@ -142,14 +142,6 @@ http://:{$PORT} {
 		file_server
 	}
 
-	# PHP handling (if you actually have .php files)
-	@php {
-		path *.php
-	}
-	handle @php {
-		php_fastcgi 127.0.0.1:9000
-	}
-
 	# Directory index fallback (for client-side routes)
 	handle {
 		try_files {path} {path}/ /index.html
