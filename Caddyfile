@@ -1,5 +1,6 @@
 {
   auto_https off
+  order php_server before file_server   # important
   admin off
 }
 
