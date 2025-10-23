@@ -365,7 +365,7 @@ Config.defaultserver = {
   host: 'aslpokemonbattling.up.railway.app',         // <-- change this
   port: 443,                                  // HTTPS/WSS
   altport: 80,
-  registered: true
+  registered: false
 };
 
 /*** Begin automatically generated configuration ***/
