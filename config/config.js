@@ -1,44 +1,24 @@
+// play.pokemonshowdown.com/config/config-test.js
 /** @type {import('../play.pokemonshowdown.com/src/client-main').PSConfig} */
-var Config = Config || {};
-
-/* version */ Config.version = "0";
-
-Config.bannedHosts = ['cool.jit.su', 'pokeball-nixonserver.rhcloud.com'];
-
-Config.whitelist = [
-	'wikipedia.org'
-
-	// The full list is maintained outside of this repository so changes to it
-	// don't clutter the commit log. Feel free to copy our list for your own
-	// purposes; it's here: https://play.pokemonshowdown.com/config/config.js
-
-	// If you would like to change our list, simply message Zarel on Smogon or
-	// Discord.
-];
-
-// `defaultserver` specifies the server to use when the domain name in the
-// address bar is `Config.routes.client`.
 Config.defaultserver = {
-	id: 'showdown',
-	host: 'aslpokemonbattling-up-railway-app.psim.us',
-	port: 443,
-	httpport: 8000,
-	altport: 80,
-	registered: true
+  id: 'asl',
+  host: 'aslpokemonbattling-up-railway-app', // your battle server host
+  port: 443,        // HTTPS/WSS
+  httpport: 8000,   // HTTP fallback
+  altport: 80,
+  registered: true
 };
 
-Config.roomsFirstOpenScript = function () {
-};
+/*************************************************************
+ * Route configuration (used for links inside the UI)
+ *************************************************************/
 
-Config.customcolors = {
-	'zarel': 'aeo'
-};
 /*** Begin automatically generated configuration ***/
 Config.version = "0.11.2";
 
 Config.routes = {
 	root: 'pokemonshowdown.com',
-	client: 'play.pokemonshowdown.com',
+	client: 'aslshowdownui-production.up.railway.app',
 	dex: 'asl-pokemon-showdown-dex-production.up.railway.app',
 	replays: 'asl-pokemon-showdown-client-production.up.railway.app',
 	users: 'pokemonshowdown.com/users',
