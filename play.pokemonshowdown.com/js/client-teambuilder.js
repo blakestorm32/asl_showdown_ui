@@ -183,17 +183,58 @@
 		},
 
 		tryLoadFormatResource: function (format) {
-			var teambuilder = this;
-			if (format in teambuilder.formatResources) { // already loading, bypass
-				return;
-			}
-			teambuilder.formatResources[format] = true; // true - loading, array - loaded
+			const teambuilder = this;
+		
+			// already loaded or loading — skip
+			if (format in teambuilder.formatResources) return;
+		
+			// mark as "loading"
+			teambuilder.formatResources[format] = true;
+		
+			// attempt to load Smogon data
 			$.get('https://www.smogon.com/dex/api/formats/by-ps-name/' + format, {}, function (data) {
-				// if the data doesn't exist, set it to true so it stops trying to load it
-				teambuilder.formatResources[format] = data || true;
+				if (!data || !data.resources) {
+					// 🧩 use a default local object if missing
+					data = {
+						url: 'https://play.pokemonshowdown.com/',
+						resources: [
+							{
+								resource_name: 'Default ruleset info',
+								url: 'https://play.pokemonshowdown.com/rules'
+							},
+							{
+								resource_name: 'Forum',
+								url: 'https://www.smogon.com/forums/'
+							},
+							{
+								resource_name: 'Pokédex',
+								url: 'https://dex.pokemonshowdown.com/'
+							}
+						]
+					};
+				}
+				teambuilder.formatResources[format] = data;
+				teambuilder.update();
+			}).fail(function () {
+				// 🧱 fallback for network errors or custom formats
+				const fallback = {
+					url: 'https://play.pokemonshowdown.com/',
+					resources: [
+						{
+							resource_name: 'Local Format',
+							url: 'https://aslshowdownui-production.up.railway.app/formats/' + encodeURIComponent(format)
+						},
+						{
+							resource_name: 'Default ruleset info',
+							url: 'https://play.pokemonshowdown.com/rules'
+						}
+					]
+				};
+				teambuilder.formatResources[format] = fallback;
 				teambuilder.update();
 			});
 		},
+
 
 		/*********************************************************
 		 * Team list view
